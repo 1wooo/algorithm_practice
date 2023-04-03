@@ -30,7 +30,7 @@ def dijkstra(start):
             cost = dist + j[1]
             if cost < distance[j[0]]:
                 distance[j[0]] = cost
-                heapq.heappush(q, (cost, j[0],))
+                heapq.heappush(q, (cost, j[0]))
 
 dijkstra(1)
 
