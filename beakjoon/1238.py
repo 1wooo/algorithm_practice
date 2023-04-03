@@ -15,10 +15,10 @@ for i in range(m):
 def dijkstra(start, distance):
     q = []
     distance[start] = 0
-    heapq.heappush(q, (start, 0))
+    heapq.heappush(q, (0, start))
 
     while q:
-        now, now_cost = heapq.heappop(q)
+        now_cost, now = heapq.heappop(q)
 
         if distance[now] < now_cost:
             continue
@@ -27,14 +27,21 @@ def dijkstra(start, distance):
             cost = now_cost + j[1]
             if cost < distance[j[0]]:
                 distance[j[0]] = cost
-                heapq.heappush(q, (j[0], cost))
+                heapq.heappush(q, (cost, j[0]))
 
 max_cost = 0
 for i in range(1, n+1):
-    distance = [INF] * (n + 1)
-    dijkstra(i, distance)
-    print(distance[x])
-    max_cost = max(max_cost, distance[x])
+    if i == x:
+        continue
+    distance1 = [INF] * (n + 1)
+    distance2 = [INF] * (n + 1)
+
+    dijkstra(i, distance1)
+    dijkstra(x, distance2)
+
+    tmp_cost = distance1[x] + distance2[i]
+    max_cost = max(max_cost, tmp_cost)
+
 
 print(max_cost)
 
