@@ -1,6 +1,6 @@
 from collections import deque
 
-# 프로그래머스 최댓값과 최솟값.
+# 프로그래머스 올바른 괄호
 def solution(s):
     li = deque(list(s))
     stack = []
